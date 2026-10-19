@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de Imagen Responsivo</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #0f172a; /* Fondo oscuro elegante */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Evita barras de desplazamiento no deseadas */
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* Contenedor principal */
+        .contenedor-imagen {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto; /* Permite scroll cuando se amplíe la imagen */
+            cursor: zoom-in;
+            padding: 20px;
+        }
+
+        /* Comportamiento de la imagen */
+        .imagen-adaptable {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease, max-width 0.3s ease, max-height 0.3s ease;
+            user-select: none;
+            -webkit-user-drag: none;
+            border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Clase que se aplicará al hacer clic para ampliar */
+        .contenedor-imagen.ampliado {
+            cursor: zoom-out;
+            display: block; /* Permite el desplazamiento natural de la imagen grande */
+        }
+
+        .contenedor-imagen.ampliado .imagen-adaptable {
+            max-width: none;
+            max-height: none;
+            transform: scale(1); /* Mantiene su resolución original */
+            margin: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 
+      IMPORTANTE: Cambia "tu-foto.jpg" por la ruta de tu imagen.
+      Si la imagen está en la misma carpeta en GitHub, basta con poner su nombre.
+    -->
+    <!-- <div class="contenedor-imagen" id="container" onclick="toggleZoom()">
+        <img src="01.JPG" alt="Imagen en alta resolución" class="imagen-adaptable" id="foto">
+    </div> -->
+    
+    <div class="contenedor-imagen" id="container">
+        <img src="01.JPG" alt="Imagen en alta resolución" class="imagen-adaptable" id="foto">
+    </div>
+
+    <script>
+        function toggleZoom() {
+            const container = document.getElementById('container');
+            container.classList.toggle('ampliado');
+        }
+    </script>
+
+</body>
+</html>
